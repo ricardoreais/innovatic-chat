@@ -5,11 +5,11 @@
                 <h1>{{ 'Please enter your username' }}</h1>
             </div>
         </div>
-        <form [formGroup]="userForm" (ngSubmit)="register(userForm.value)">
+        <form [formGroup]="userForm" (ngSubmit)="login(userForm.value)">
             <div class="row">
                 <div class="col d-flex justify-content-center">
                     <mat-form-field>
-                        <mat-label>{{ 'Enter your email' }}</mat-label>
+                        <mat-label>{{ 'Enter your username' }}</mat-label>
                         <input matInput type="text" placeholder="{{ 'Username' }}" formControlName="name" required>
                         <mat-error *ngIf="userForm.name && userForm.name.invalid">{{getErrorMessage()}}</mat-error>
                     </mat-form-field>
@@ -17,7 +17,7 @@
             </div>
             <div class="row">
                 <div class="col d-flex justify-content-center">
-                    <button mat-raised-button>{{ 'Register' }}</button>
+                    <button mat-raised-button [disabled]="userForm.invalid">{{ 'Login' }}</button>
                 </div>
             </div>
         </form>

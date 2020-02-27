@@ -1,0 +1,28 @@
+<mat-card class="dashboard-container">
+    <mat-drawer-container class="drawer-container">
+        <mat-drawer mode="side" opened class="col-4">
+            <div class="row">
+                <div class="col">{{ 'Hello there ' + user.name }}</div>
+            </div>
+            <div class="row">
+                <div class="col">{{ 'Chat list:' }}</div>
+            </div>
+            <mat-action-list>
+                <ul class="list-group">
+                    <li class="list-group-item chat-preview-item" *ngFor="let chat of chats$ | async" (click)="openChat(chat.id)">
+                        <div class="row">
+                            <div class="col">{{ chat.name }}</div>
+                            <div class="col text-black-50">{{ chat.latestMessageDate | date:'shortDate' }}</div>
+                        </div>
+                        <div class="row">
+                            <div class="col text-black-50">{{ chat.latestMessage }}</div>
+                        </div>
+                    </li>
+                </ul>
+            </mat-action-list>
+        </mat-drawer>
+        <mat-drawer-content class="col-8">
+            <app-chat-window [chat]="currentChat$ | async"></app-chat-window>
+        </mat-drawer-content>
+    </mat-drawer-container>
+</mat-card>
