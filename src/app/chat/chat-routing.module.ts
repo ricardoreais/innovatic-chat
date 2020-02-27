@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '../shared/guards/auth.guard';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { ChatWindowComponent } from './components/chat-window/chat-window.component';
 
 const routes: Routes = [
   {

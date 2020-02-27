@@ -27,7 +27,6 @@ export class DashboardComponent implements OnInit {
   }
 
   public openChat(id: number): void {
-    this.chatService.getDetail(id)
-      .subscribe((chat: ChatDetail) => this.chatService.updateCurrentChat(chat.id));
+    this.chatService.getDetail(id).subscribe();
   }
 }

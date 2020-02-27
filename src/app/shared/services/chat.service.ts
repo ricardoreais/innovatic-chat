@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, Subject } from 'rxjs';
-import { delay, map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { Chat } from 'src/app/chat/models/chat.model';
 import { ChatDetail } from 'src/app/chat/models/chat-detail.model';
 import { UserService } from './user.service';
@@ -124,6 +124,8 @@ export class ChatService {
     console.log('HTTP GET Chat with id: ' + id);
 
     return of(this.chatDetail).pipe(
+      // Everytime we get the chat detail we should store it in the service state.
+      tap((chat: ChatDetail) => this.updateCurrentChat(chat)),
       // delay(1000),
       // We want to calculate if the message was sent by me only once,
       // that's why we do it here instead of adding complex logic to the html template.
@@ -141,8 +143,8 @@ export class ChatService {
     );
   }
 
-  public updateCurrentChat(id: number): void {
-    this.currentChatId = id;
+  private updateCurrentChat(chat: ChatDetail): void {
+    this.currentChatId = chat.id;
     this.currentChatSubject.next(this.chatDetail);
   }
 }
