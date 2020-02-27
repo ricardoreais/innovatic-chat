@@ -2,12 +2,11 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from './shared/guards/auth.guard';
 
-
 // Each page uses a lazy loaded module.
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'user',
+    redirectTo: 'chat',
     pathMatch: 'full'
   },
   {
